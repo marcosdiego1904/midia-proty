@@ -181,7 +181,7 @@
 <body class="antialiased">
 
     <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 bg-slate-900 bg-opacity-95 z-40 flex flex-col items-center justify-center menu-hidden">
+    <div id="mobile-menu" class="fixed inset-0 bg-slate-900 bg-opacity-95 z-50 flex flex-col items-center justify-center menu-hidden">
         <button id="close-menu-button" class="absolute top-7 right-4 text-white focus:outline-none">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -199,7 +199,7 @@
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
 
         <!-- Header/Navbar -->
-        <header class="py-6 flex justify-between items-center z-50 relative">
+        <header class="py-6 flex justify-between items-center z-40 relative">
             <div class="text-2xl font-bold text-white">MidiaCode</div>
             
             <!-- Desktop Nav -->
@@ -220,129 +220,124 @@
             </div>
         </header>
 
-        <!-- Seção 1: O Gancho (The Hero Section) -->
-        <section id="hero-section" class="py-20 md:py-32 relative overflow-hidden">
-            <div class="hero-visual-bg"></div>
-            <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
-                <div class="text-center md:text-left scroll-animate">
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">Seus Códigos QR agora conhecem seus clientes.</h1>
-                    <p class="mt-6 text-lg sm:text-xl text-slate-300 max-w-lg mx-auto md:mx-0">Adapte a experiência de cada scan em tempo real. Entregue ofertas exclusivas, guias personalizados ou conteúdo interativo, tudo a partir de um único código QR.</p>
-                    <div class="mt-10 flex flex-col sm:flex-row justify-center md:justify-start items-center gap-4">
-                        <a href="#final-cta" class="cta-button-primary text-lg w-full sm:w-auto">Agendar uma Demo</a>
-                        <a href="#features" class="cta-button-secondary text-lg w-full sm:w-auto">Explorar Funcionalidades</a>
+        <!-- Main Content Wrapper -->
+        <main>
+            <!-- ================================================================== -->
+            <!-- CORREÇÃO APLICADA AQUI -->
+            <!-- 1. Padding superior (pt) foi reduzido para levantar a seção. -->
+            <!-- 2. Adicionado min-height para garantir que a seção ocupe um espaço vertical significativo. -->
+            <!-- ================================================================== -->
+            <section id="hero-section" class="relative overflow-hidden pt-12 md:pt-16 pb-20 md:pb-28 flex items-center min-h-[calc(100vh-150px)]">
+                <div class="hero-visual-bg"></div>
+                <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
+                    <div class="text-center md:text-left scroll-animate">
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">Seus Códigos QR agora conhecem seus clientes.</h1>
+                        <p class="mt-6 text-lg sm:text-xl text-slate-300 max-w-lg mx-auto md:mx-0">Adapte a experiência de cada scan em tempo real. Entregue ofertas exclusivas, guias personalizados ou conteúdo interativo, tudo a partir de um único código QR.</p>
+                        <div class="mt-10 flex flex-col sm:flex-row justify-center md:justify-start items-center gap-4">
+                            <a href="#final-cta" class="cta-button-primary text-lg w-full sm:w-auto">Agendar uma Demo</a>
+                            <a href="#features" class="cta-button-secondary text-lg w-full sm:w-auto">Explorar Funcionalidades</a>
+                        </div>
                     </div>
-                </div>
-                
-                <!-- ===== VISUAL ORBITAL ===== -->
-                <div id="hero-visual" class="w-full h-full flex items-center justify-center scroll-animate min-h-[350px] md:min-h-[400px]" style="transition-delay: 0.2s;">
-                    <div class="orbital-container">
-                        <div class="orbit orbit-1"></div>
-                        <div class="orbit orbit-2"></div>
-                        <div class="central-qr">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="currentColor">
-                                <path d="M10 10h25v25H10zM18 18h9v9h-9zM65 10h25v25H65zM73 18h9v9h-9zM10 65h25v25H10zM18 73h9v9h-9z"/>
-                                <path opacity=".6" d="M45 10h5v5h-5zm10 5h5v5h-5zm-10 10h5v5h-5zm10 5h5v5h-5zm-25 5h5v5h-5zm-10 5h5v5h-5zm40 10h5v5h-5zm10-10h5v5h-5zm10 10h5v5h-5zm-40 15h5v5h-5zm10 5h5v5h-5zm-20-15h5v5h-5zM75 75h5v5h-5zm-5 5h5v5h-5zm10 0h5v5h-5z"/>
-                            </svg>
-                        </div>
-                        <div class="orbiting-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" /></svg>
-                        </div>
-                        <div class="orbiting-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /></svg>
-                        </div>
-                        <div class="orbiting-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" /></svg>
-                        </div>
-                        <div class="orbiting-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" /></svg>
-                        </div>
-                        <div class="orbiting-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" /></svg>
-                        </div>
-                        <div class="orbiting-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c.51 0 .962-.328 1.093-.828l2.857-9.589a.75.75 0 0 0-.702-.965H5.488c-.51 0-.962.328-1.093.828L2.25 3Z" /></svg>
+                    
+                    <!-- ===== VISUAL ORBITAL ===== -->
+                    <div id="hero-visual" class="w-full h-full flex items-center justify-center scroll-animate min-h-[350px] md:min-h-[400px]" style="transition-delay: 0.2s;">
+                        <div class="orbital-container">
+                            <div class="orbit orbit-1"></div>
+                            <div class="orbit orbit-2"></div>
+                            <div class="central-qr">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="currentColor">
+                                    <path d="M10 10h25v25H10zM18 18h9v9h-9zM65 10h25v25H65zM73 18h9v9h-9zM10 65h25v25H10zM18 73h9v9h-9z"/>
+                                    <path opacity=".6" d="M45 10h5v5h-5zm10 5h5v5h-5zm-10 10h5v5h-5zm10 5h5v5h-5zm-25 5h5v5h-5zm-10 5h5v5h-5zm40 10h5v5h-5zm10-10h5v5h-5zm10 10h5v5h-5zm-40 15h5v5h-5zm10 5h5v5h-5zm-20-15h5v5h-5zM75 75h5v5h-5zm-5 5h5v5h-5zm10 0h5v5h-5z"/>
+                                </svg>
+                            </div>
+                            <!-- Icons in Orbit -->
+                            <div class="orbiting-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" /></svg></div>
+                            <div class="orbiting-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /></svg></div>
+                            <div class="orbiting-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" /></svg></div>
+                            <div class="orbiting-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" /></svg></div>
+                            <div class="orbiting-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" /></svg></div>
+                            <div class="orbiting-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c.51 0 .962-.328 1.093-.828l2.857-9.589a.75.75 0 0 0-.702-.965H5.488c-.51 0-.962.328-1.093.828L2.25 3Z" /></svg></div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Seção 2: Prova Social (Logos) -->
-        <section class="py-12 scroll-animate">
-            <h3 class="text-center text-slate-400 font-medium px-4">A plataforma de confiança para líderes em múltiplas indústrias</h3>
-            <div class="mt-8 flex flex-wrap justify-center items-center gap-x-8 gap-y-4 md:gap-x-12 lg:gap-x-16 grayscale opacity-60">
-                <p class="text-2xl font-bold">TechCorp</p>
-                <p class="text-2xl font-bold">InnovateCo</p>
-                <p class="text-2xl font-bold">Quantum</p>
-                <p class="text-2xl font-bold">Apex</p>
-                <p class="text-2xl font-bold">Synergy</p>
-            </div>
-        </section>
-
-        <!-- Seção 3: Problema vs Solução -->
-        <section class="py-20 md:py-28 scroll-animate">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="text-center md:text-left"><div class="inline-flex items-center justify-center w-16 h-16 bg-slate-800 border border-slate-700 rounded-xl mb-6"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8 text-slate-400"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" /></svg></div><h2 class="text-3xl md:text-4xl font-bold">O QR Estático é um Beco sem Saída.</h2><p class="mt-4 text-lg text-slate-300">Uma vez impresso, você não pode alterá-lo. Você não sabe quem o escaneia. É uma oportunidade de marketing completamente perdida.</p></div>
-                <div class="text-center md:text-left p-8 rounded-xl bg-slate-800/50 border border-blue-500/30 shadow-2xl shadow-blue-500/10"><div class="inline-flex items-center justify-center w-16 h-16 bg-blue-500/10 border border-blue-500/20 rounded-xl mb-6"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8 text-blue-400"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0 0 20.25 18V6A2.25 2.25 0 0 0 18 3.75H6A2.25 2.25 0 0 0 3.75 6v12A2.25 2.25 0 0 0 6 20.25Z" /></svg></div><h2 class="text-3xl md:text-4xl font-bold">O QR Dinâmico é uma Conversa.</h2><p class="mt-4 text-lg text-slate-300">Edite o destino a qualquer momento. Meça cada interação. Personalize a experiência do usuário instantaneamente.</p></div>
-            </div>
-        </section>
-
-        <!-- Seção 4: Como Funciona -->
-        <section id="features" class="py-20 md:py-28 text-center scroll-animate">
-            <h2 class="text-3xl md:text-4xl font-bold">Resultados Poderosos em 3 Passos Simples</h2>
-            <div class="mt-16 grid md:grid-cols-3 gap-10 max-w-5xl mx-auto">
-                <div class="feature-card"><div class="text-blue-500 font-bold text-6xl mb-4">1</div><h3 class="text-2xl font-semibold">Crie</h3><p class="mt-2 text-slate-400">Crie seu conteúdo e experiências de destino em nossa plataforma intuitiva.</p></div>
-                <div class="feature-card" style="transition-delay: 0.2s;"><div class="text-blue-500 font-bold text-6xl mb-4">2</div><h3 class="text-2xl font-semibold">Personalize</h3><p class="mt-2 text-slate-400">Defina regras e gatilhos para adaptar a experiência a cada usuário e contexto.</p></div>
-                <div class="feature-card" style="transition-delay: 0.4s;"><div class="text-blue-500 font-bold text-6xl mb-4">3</div><h3 class="text-2xl font-semibold">Analise</h3><p class="mt-2 text-slate-400">Meça o ROI de cada campanha com análises detalhadas e em tempo real.</p></div>
-            </div>
-        </section>
-
-        <!-- Seção 5: Casos de Uso por Indústria -->
-        <section class="py-20 md:py-28 scroll-animate">
-            <div class="text-center"><h2 class="text-3xl md:text-4xl font-bold">Uma Solução Versátil para Cada Indústria</h2><p class="mt-4 text-lg text-slate-300 max-w-2xl mx-auto">Descubra como a MidiaCode se adapta aos desafios específicos do seu setor.</p></div>
-            <div class="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="feature-card text-center"><h3 class="text-2xl font-semibold">Varejo & CPG</h3><p class="mt-2 text-slate-400">"Transforme sua embalagem em seu melhor vendedor."</p></div>
-                <div class="feature-card text-center" style="transition-delay: 0.2s;"><h3 class="text-2xl font-semibold">Eventos e Conferências</h3><p class="mt-2 text-slate-400">"Ofereça uma experiência interativa aos seus participantes."</p></div>
-                <div class="feature-card text-center" style="transition-delay: 0.4s;"><h3 class="text-2xl font-semibold">Imobiliário</h3><p class="mt-2 text-slate-400">"Dê vida às suas propriedades com tours virtuais e muito mais."</p></div>
-            </div>
-            <div class="mt-12 text-center"><a href="#" class="cta-button-secondary">Ver todos os Casos de Uso</a></div>
-        </section>
-
-        <!-- Seção 6: Demo Interativo de IA -->
-        <section class="py-20 md:py-28 scroll-animate">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h2 class="text-3xl md:text-4xl font-bold">Apresentando o Assistente de Campanhas de IA</h2>
-                    <p class="mt-4 text-lg text-slate-300">Seu estrategista de marketing pessoal dentro da plataforma. A IA ajuda você a otimizar campanhas, sugere conteúdo e prevê resultados para maximizar seu impacto.</p>
+            <!-- Seção 2: Prova Social (Logos) -->
+            <section class="py-12 scroll-animate">
+                <h3 class="text-center text-slate-400 font-medium px-4">A plataforma de confiança para líderes em múltiplas indústrias</h3>
+                <!-- CORREÇÃO: Substituí os nomes de texto por SVGs para um visual mais profissional -->
+                <div class="mt-8 flex flex-wrap justify-center items-center gap-x-10 gap-y-6 md:gap-x-16 lg:gap-x-20 grayscale opacity-60 text-slate-500">
+                    <svg class="h-8" viewBox="0 0 121 28" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M108.539 21.0541V7.54051H112.243V21.0541H108.539ZM99.9443 21.3243C97.9443 21.3243 96.3229 20.4595 95.0797 18.7297L98.0527 17.2973C98.6743 18.2432 99.431 18.7027 100.323 18.7027C101.429 18.7027 102.134 18.1081 102.134 17.1351C102.134 15.8919 100.999 15.4595 99.1067 14.9189L97.7351 14.5405C95.2743 13.8919 93.9027 12.6216 93.9027 10.5135C93.9027 8.24324 95.8513 6.94592 98.4851 6.94592C100.274 6.94592 101.755 7.59457 102.861 9.08105L100.074 10.6216C99.5443 9.89187 99.0148 9.56754 98.3497 9.56754C97.5929 9.56754 97.1605 9.97295 97.1605 10.6757C97.1605 11.6486 98.0527 11.9189 99.8418 12.4054L101.463 12.8378C103.924 13.5405 105.399 14.8378 105.399 16.973C105.399 19.5946 103.188 21.3243 99.9443 21.3243ZM82.431 21.0541H78.2148V12.1892C78.2148 10.2162 77.1067 9.35132 75.631 9.35132C74.2594 9.35132 73.3135 10.0811 72.9418 11.3513L72.7797 12.027V21.0541H68.5635V7.54051H72.4283L72.5905 9.72971H72.7283C73.577 8.13511 75.0527 6.94592 76.9443 6.94592C79.9172 6.94592 82.431 8.86484 82.431 12.7297V21.0541ZM64.6905 14.2432C64.6905 18.2432 61.9554 21.3243 57.8905 21.3243C53.8256 21.3243 51.0905 18.2432 51.0905 14.2432C51.0905 10.2432 53.8256 7.16214 57.8905 7.16214C61.9554 7.16214 64.6905 10.2432 64.6905 14.2432ZM60.9851 14.2432C60.9851 12.027 59.7418 9.78376 57.8905 9.78376C56.0391 9.78376 54.7959 12.027 54.7959 14.2432C54.7959 16.4595 56.0391 18.7027 57.8905 18.7027C59.7418 18.7027 60.9851 16.4595 60.9851 14.2432ZM44.2418 21.0541H35.3497V7.54051H44.2418V10.1621H39.0527V12.8378H43.631V15.4594H39.0527V18.4324H44.2418V21.0541ZM24.2148 7.54051H28.431V21.0541H24.2148V7.54051ZM26.3229 5.43241C25.0797 5.43241 24.0851 4.49187 24.0851 3.29727C24.0851 2.10268 25.0797 1.16214 26.3229 1.16214C27.5662 1.16214 28.5608 2.10268 28.5608 3.29727C28.5608 4.49187 27.5662 5.43241 26.3229 5.43241ZM12.7283 21.0541H8.51215V12.1892C8.51215 10.2162 7.40404 9.35132 5.92836 9.35132C4.55674 9.35132 3.6108 10.0811 3.23917 11.3513L3.07701 12.027V21.0541H-1.13919V7.54051H2.72566L2.88782 9.72971H3.02566C3.87431 8.13511 5.3500-0.0270541 7.24159 6.94592C10.2145 6.94592 12.7283 8.86484 12.7283 12.7297V21.0541Z" /></svg>
+                    <svg class="h-7" viewBox="0 0 104 28" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M2.43361 21.16V7.64H6.13761V21.16H2.43361ZM17.4336 21.43C15.4336 21.43 13.8122 20.5652 12.5682 18.8352L15.5412 17.4028C16.1628 18.3484 16.9196 18.808 17.8116 18.808C18.9176 18.808 19.6228 18.2132 19.6228 17.2402C19.6228 15.997 18.4876 15.5646 16.5956 15.024L15.2242 14.6456C12.7634 13.997 11.3918 12.7268 11.3918 10.6188C11.3918 8.34844 13.3404 7.05112 15.9742 7.05112C17.763 7.05112 19.2436 7.70004 20.3496 9.18644L17.5628 10.7268C17.0332 9.99704 16.5036 9.67272 15.8384 9.67272C15.0816 9.67272 14.6492 10.0781 14.6492 10.7809C14.6492 11.7539 15.5412 12.0241 17.3304 12.5106L18.9516 12.943C21.4124 13.6458 22.8876 14.9431 22.8876 17.0782C22.8876 19.7 20.6764 21.43 17.4336 21.43ZM33.6228 21.16H29.4068V12.2852C29.4068 10.3122 28.2988 9.44744 26.8232 9.44744C25.4516 9.44744 24.5056 10.1772 24.134 11.4476L23.9718 12.1232V21.16H19.7556V7.64H23.6204L23.7826 9.83492H23.9204C24.769 8.24032 26.2446 7.05112 28.1362 7.05112C31.1092 7.05112 33.6228 8.96992 33.6228 12.8348V21.16ZM45.5412 14.3484C45.5412 18.3484 42.8062 21.43 38.7412 21.43C34.6762 21.43 31.9412 18.3484 31.9412 14.3484C31.9412 10.3484 34.6762 7.26732 38.7412 7.26732C42.8062 7.26732 45.5412 10.3484 45.5412 14.3484ZM41.8368 14.3484C41.8368 12.1232 40.5936 9.87984 38.7412 9.87984C36.8908 9.87984 35.6476 12.1232 35.6476 14.3484C35.6476 16.5646 36.8908 18.808 38.7412 18.808C40.5936 18.808 41.8368 16.5646 41.8368 14.3484ZM55.0936 21.16H46.2016V7.64H55.0936V10.2624H49.9044V12.938H54.4828V15.5596H49.9044V18.5326H55.0936V21.16ZM65.0682 7.64H69.2844V21.16H65.0682V7.64ZM67.1764 5.5376C65.9332 5.5376 64.9386 4.59704 64.9386 3.40244C64.9386 2.20784 65.9332 1.26732 67.1764 1.26732C68.4196 1.26732 69.4142 2.20784 69.4142 3.40244C69.4142 4.59704 68.4196 5.5376 67.1764 5.5376ZM76.7204 21.16H72.5044V12.2852C72.5044 10.3122 71.3964 9.44744 69.9208 9.44744C68.5492 9.44744 67.6032 10.1772 67.2316 11.4476L67.0694 12.1232V21.16H62.8532V7.64H66.718L66.8802 9.83492H67.018C67.8666 8.24032 69.3422 7.05112 71.2338 7.05112C74.2068 7.05112 76.7204 8.96992 76.7204 12.8348V21.16ZM84.3918 14.1808L88.9702 7.64H93.8368L88.1332 15.401L93.6764 21.16H88.6532L85.4104 16.7276L83.9348 18.5326V21.16H80.2308V7.64H84.3918V14.1808ZM101.414 21.16H97.198V7.64H101.414V21.16ZM99.306 5.5376C100.549 5.5376 101.544 4.59704 101.544 3.40244C101.544 2.20784 100.549 1.26732 99.306 1.26732C98.0628 1.26732 97.0682 2.20784 97.0682 3.40244C97.0682 4.59704 98.0628 5.5376 99.306 5.5376Z" /></svg>
+                    <svg class="h-8" viewBox="0 0 102 28" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16.921 21.3199C13.831 21.3199 11.233 19.3399 11.233 15.4399V7.5399H15.415V15.1159C15.415 17.3119 16.489 18.5719 18.361 18.5719C20.233 18.5719 21.307 17.3119 21.307 15.1159V7.5399H25.489V21.0199H21.745V19.2319H21.601C20.527 20.7319 18.943 21.3199 16.921 21.3199ZM38.653 21.0199H34.471V7.5399H38.653V21.0199ZM36.562 5.4319C35.317 5.4319 34.321 4.4899 34.321 3.2959C34.321 2.1019 35.317 1.1599 36.562 1.1599C37.807 1.1599 38.803 2.1019 38.803 3.2959C38.803 4.4899 37.807 5.4319 36.562 5.4319ZM51.307 21.0199H47.125V12.1819C47.125 10.2079 46.015 9.3439 44.539 9.3439C43.165 9.3439 42.217 10.0759 41.845 11.3419L41.683 12.0199V21.0199H37.465V7.5399H41.332L41.494 9.7219H41.632C42.481 8.1259 43.957 6.9379 45.85 6.9379C48.823 6.9379 51.307 8.8579 51.307 12.7219V21.0199ZM65.044 14.2399C65.044 10.2399 62.308 7.1599 58.243 7.1599C54.178 7.1599 51.442 10.2399 51.442 14.2399C51.442 18.2399 54.178 21.3199 58.243 21.3199C62.308 21.3199 65.044 18.2399 65.044 14.2399ZM61.339 14.2399C61.339 16.4539 60.094 18.6979 58.243 18.6979C56.392 18.6979 55.147 16.4539 55.147 14.2399C55.147 12.0259 56.392 9.7819 58.243 9.7819C60.094 9.7819 61.339 12.0259 61.339 14.2399ZM78.181 21.0199H69.289V7.5399H78.181V10.1599H72.997V12.8359H77.575V15.4579H72.997V18.4219H78.181V21.0199ZM89.875 21.3199C87.875 21.3199 86.254 20.4559 85.01 18.7219L87.983 17.2879C88.605 18.2359 89.362 18.6979 90.254 18.6979C91.36 18.6979 92.065 18.1039 92.065 17.1319C92.065 15.8899 90.931 15.4579 89.038 14.9179L87.666 14.5399C85.205 13.8899 83.833 12.6199 83.833 10.5139C83.833 8.2429 85.782 6.9439 88.416 6.9439C90.205 6.9439 91.687 7.5919 92.794 9.0799L90.007 10.6189C89.477 9.8899 88.947 9.5659 88.282 9.5659C87.525 9.5659 87.093 9.9699 87.093 10.6729C87.093 11.6479 87.983 11.9179 89.773 12.4039L91.395 12.8359C93.856 13.5379 95.332 14.8359 95.332 16.9699C95.332 19.5889 93.121 21.3199 89.875 21.3199ZM101.542 7.2379L96.964 14.0179V21.0199H93.22V7.5399H96.52L100.522 13.5139V7.5399H104.266V21.0199H101.542V7.2379Z" /></svg>
                 </div>
-                
-                <div id="ai-demo-container" class="bg-slate-800/80 p-6 rounded-xl border border-slate-700 shadow-lg">
-                    <h3 class="text-lg font-semibold text-white">Teste o Assistente de IA</h3>
-                    <p class="text-sm text-slate-400 mb-4">Escreva seu objetivo e obtenha uma sugestão instantaneamente.</p>
-                    <div class="mt-4">
-                        <label for="ia-prompt" class="block text-sm font-medium text-slate-300 sr-only">Seu objetivo:</label>
-                        <input type="text" id="ia-prompt" name="ia-prompt" class="w-full bg-slate-700 border border-slate-600 rounded-md py-2 px-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ex: Vender mais café na minha loja física">
+            </section>
+
+            <!-- Seção 3: Problema vs Solução -->
+            <section class="py-20 md:py-28 scroll-animate">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="text-center md:text-left"><div class="inline-flex items-center justify-center w-16 h-16 bg-slate-800 border border-slate-700 rounded-xl mb-6"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8 text-slate-400"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" /></svg></div><h2 class="text-3xl md:text-4xl font-bold">O QR Estático é um Beco sem Saída.</h2><p class="mt-4 text-lg text-slate-300">Uma vez impresso, você não pode alterá-lo. Você não sabe quem o escaneia. É uma oportunidade de marketing completamente perdida.</p></div>
+                    <div class="text-center md:text-left p-8 rounded-xl bg-slate-800/50 border border-blue-500/30 shadow-2xl shadow-blue-500/10"><div class="inline-flex items-center justify-center w-16 h-16 bg-blue-500/10 border border-blue-500/20 rounded-xl mb-6"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8 text-blue-400"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0 0 20.25 18V6A2.25 2.25 0 0 0 18 3.75H6A2.25 2.25 0 0 0 3.75 6v12A2.25 2.25 0 0 0 6 20.25Z" /></svg></div><h2 class="text-3xl md:text-4xl font-bold">O QR Dinâmico é uma Conversa.</h2><p class="mt-4 text-lg text-slate-300">Edite o destino a qualquer momento. Meça cada interação. Personalize a experiência do usuário instantaneamente.</p></div>
+                </div>
+            </section>
+
+            <!-- Seção 4: Como Funciona -->
+            <section id="features" class="py-20 md:py-28 text-center scroll-animate">
+                <h2 class="text-3xl md:text-4xl font-bold">Resultados Poderosos em 3 Passos Simples</h2>
+                <div class="mt-16 grid md:grid-cols-3 gap-10 max-w-5xl mx-auto">
+                    <div class="feature-card"><div class="text-blue-500 font-bold text-6xl mb-4">1</div><h3 class="text-2xl font-semibold">Crie</h3><p class="mt-2 text-slate-400">Crie seu conteúdo e experiências de destino em nossa plataforma intuitiva.</p></div>
+                    <div class="feature-card" style="transition-delay: 0.2s;"><div class="text-blue-500 font-bold text-6xl mb-4">2</div><h3 class="text-2xl font-semibold">Personalize</h3><p class="mt-2 text-slate-400">Defina regras e gatilhos para adaptar a experiência a cada usuário e contexto.</p></div>
+                    <div class="feature-card" style="transition-delay: 0.4s;"><div class="text-blue-500 font-bold text-6xl mb-4">3</div><h3 class="text-2xl font-semibold">Analise</h3><p class="mt-2 text-slate-400">Meça o ROI de cada campanha com análises detalhadas e em tempo real.</p></div>
+                </div>
+            </section>
+
+            <!-- Seção 5: Casos de Uso por Indústria -->
+            <section class="py-20 md:py-28 scroll-animate">
+                <div class="text-center"><h2 class="text-3xl md:text-4xl font-bold">Uma Solução Versátil para Cada Indústria</h2><p class="mt-4 text-lg text-slate-300 max-w-2xl mx-auto">Descubra como a MidiaCode se adapta aos desafios específicos do seu setor.</p></div>
+                <div class="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="feature-card text-center"><h3 class="text-2xl font-semibold">Varejo & CPG</h3><p class="mt-2 text-slate-400">"Transforme sua embalagem em seu melhor vendedor."</p></div>
+                    <div class="feature-card text-center" style="transition-delay: 0.2s;"><h3 class="text-2xl font-semibold">Eventos e Conferências</h3><p class="mt-2 text-slate-400">"Ofereça uma experiência interativa aos seus participantes."</p></div>
+                    <div class="feature-card text-center" style="transition-delay: 0.4s;"><h3 class="text-2xl font-semibold">Imobiliário</h3><p class="mt-2 text-slate-400">"Dê vida às suas propriedades com tours virtuais e muito mais."</p></div>
+                </div>
+                <div class="mt-12 text-center"><a href="#" class="cta-button-secondary">Ver todos os Casos de Uso</a></div>
+            </section>
+
+            <!-- Seção 6: Demo Interativo de IA -->
+            <section class="py-20 md:py-28 scroll-animate">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold">Apresentando o Assistente de Campanhas de IA</h2>
+                        <p class="mt-4 text-lg text-slate-300">Seu estrategista de marketing pessoal dentro da plataforma. A IA ajuda você a otimizar campanhas, sugere conteúdo e prevê resultados para maximizar seu impacto.</p>
                     </div>
-                    <button id="ia-suggest-btn" class="w-full mt-4 cta-button-primary">
-                        Gerar Sugestão
-                    </button>
-                    <div id="ia-suggestion" class="mt-6 p-4 bg-blue-900/50 border border-blue-800 rounded-lg text-slate-300 hidden min-h-[100px]">
-                        <!-- A sugestão da IA será inserida aqui -->
+                    
+                    <div id="ai-demo-container" class="bg-slate-800/80 p-6 rounded-xl border border-slate-700 shadow-lg">
+                        <h3 class="text-lg font-semibold text-white">Teste o Assistente de IA</h3>
+                        <p class="text-sm text-slate-400 mb-4">Escreva seu objetivo e obtenha uma sugestão instantaneamente.</p>
+                        <div class="mt-4">
+                            <label for="ia-prompt" class="block text-sm font-medium text-slate-300 sr-only">Seu objetivo:</label>
+                            <input type="text" id="ia-prompt" name="ia-prompt" class="w-full bg-slate-700 border border-slate-600 rounded-md py-2 px-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ex: Vender mais café na minha loja física">
+                        </div>
+                        <button id="ia-suggest-btn" class="w-full mt-4 cta-button-primary">
+                            Gerar Sugestão
+                        </button>
+                        <div id="ia-suggestion" class="mt-6 p-4 bg-blue-900/50 border border-blue-800 rounded-lg text-slate-300 hidden min-h-[100px]">
+                            <!-- A sugestão da IA será inserida aqui -->
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Seção 7: CTA Final -->
-        <section id="final-cta" class="py-20 md:py-28 my-16 bg-blue-600 rounded-xl text-center scroll-animate">
-            <div class="max-w-3xl mx-auto px-6">
-                <h2 class="text-3xl md:text-5xl font-bold text-white">Pronto para implementar marketing móvel inteligente?</h2>
-                <p class="mt-6 text-lg text-blue-100">Fale com um especialista e descubra como a MidiaCode pode transformar suas interações com clientes e potencializar seus resultados.</p>
-                <div class="mt-10">
-                    <a href="#" class="cta-button-primary bg-white text-blue-600 text-lg px-6 py-3 sm:text-xl sm:px-8 sm:py-4 shadow-2xl hover:bg-slate-100 whitespace-nowrap">Agendar minha Demo Gratuita</a>
+            <!-- Seção 7: CTA Final -->
+            <section id="final-cta" class="py-20 md:py-28 my-16 bg-blue-600 rounded-xl text-center scroll-animate">
+                <div class="max-w-3xl mx-auto px-6">
+                    <h2 class="text-3xl md:text-5xl font-bold text-white">Pronto para implementar marketing móvel inteligente?</h2>
+                    <p class="mt-6 text-lg text-blue-100">Fale com um especialista e descubra como a MidiaCode pode transformar suas interações com clientes e potencializar seus resultados.</p>
+                    <div class="mt-10">
+                        <a href="#" class="cta-button-primary bg-white text-blue-600 text-lg px-6 py-3 sm:text-xl sm:px-8 sm:py-4 shadow-2xl hover:bg-slate-100 whitespace-nowrap">Agendar minha Demo Gratuita</a>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </main>
     </div>
 
     <!-- Footer -->
