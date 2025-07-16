@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="pt" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MidiaCode - Protótipo Visual com Demo IA</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* Estilos base (Mobile-First) */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0A192F;
+            color: #CBD5E1;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            color: #FFFFFF;
+        }
+        .cta-button-primary {
+            background-color: #3B82F6;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.39);
+        }
+        .cta-button-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px 0 rgba(59, 130, 246, 0.5);
+        }
+        .cta-button-secondary {
+            background-color: rgba(51, 65, 85, 0.5);
+            border: 1px solid #334155;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            transition: background-color 0.3s ease;
+        }
+        .cta-button-secondary:hover {
+            background-color: #334155;
+        }
+        .feature-card {
+            border: 1px solid #334155;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            background: rgba(30, 41, 59, 0.3);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #3B82F6;
+        }
+        .hero-visual-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200vw;
+            height: 100%;
+            max-width: 1000px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, rgba(10, 25, 47, 0) 65%);
+            z-index: 0;
+            filter: blur(60px);
+        }
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .scroll-animate.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- VISUAL ORBITAL (RESPONSIVE) --- */
+        .orbital-container {
+            position: relative;
+            width: 80vw;
+            height: 80vw;
+            max-width: 350px;
+            max-height: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem auto;
+        }
+
+        .central-qr {
+            width: 40%;
+            height: 40%;
+            min-width: 100px;
+            min-height: 100px;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid #334155;
+            border-radius: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(4px);
+            animation: pulse-glow 4s ease-in-out infinite;
+            z-index: 10;
+        }
+
+        .central-qr svg {
+            width: 70%;
+            height: 70%;
+            color: #3B82F6;
+            opacity: 0.9;
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 15px rgba(59, 130, 246, 0.3), 0 0 5px rgba(59, 130, 246, 0.2) inset; }
+            50% { box-shadow: 0 0 35px rgba(59, 130, 246, 0.6), 0 0 10px rgba(59, 130, 246, 0.4) inset; }
+            100% { box-shadow: 0 0 15px rgba(59, 130, 246, 0.3), 0 0 5px rgba(59, 130, 246, 0.2) inset; }
+        }
+
+        .orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border: 1px dashed rgba(51, 65, 85, 0.5);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: spin 30s linear infinite;
+        }
+        .orbit-2 { animation-duration: 45s; }
+
+        @keyframes spin {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .orbiting-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 48px;
+            height: 48px;
+            margin: -24px;
+            background-color: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(5px);
+            border-radius: 0.75rem;
+            padding: 0.5rem;
+            border: 1px solid #334155;
+            color: #94A3B8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.1s linear;
+        }
+        
+        .orbiting-icon svg {
+            width: 1.75rem;
+            height: 1.75rem;
+        }
+
+        /* --- Estilos para o Menu Mobile --- */
+        #mobile-menu {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+        #mobile-menu.menu-hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-slate-900 bg-opacity-95 z-40 flex flex-col items-center justify-center">
+        <button id="close-menu-button" class="absolute top-7 right-4 text-white focus:outline-none">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <nav class="flex flex-col items-center space-y-8">
+            <a href="#" class="text-3xl text-slate-300 hover:text-white transition-colors">Plataforma</a>
+            <a href="#" class="text-3xl text-slate-300 hover:text-white transition-colors">Indústrias</a>
+            <a href="#" class="text-3xl text-slate-300 hover:text-white transition-colors">Preços</a>
+            <a href="#final-cta" class="cta-button-secondary text-2xl mt-8">Agendar Demo</a>
+        </nav>
+    </div>
+
+    <!-- Container Principal -->
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Header/Navbar -->
+        <header class="py-6 flex justify-between items-center z-50 relative">
+            <div class="text-2xl font-bold text-white">MidiaCode</div>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#" class="text-slate-300 hover:text-white transition-colors">Plataforma</a>
+                <a href="#" class="text-slate-300 hover:text-white transition-colors">Indústrias</a>
+                <a href="#" class="text-slate-300 hover:text-white transition-colors">Preços</a>
+            </nav>
+            <a href="#final-cta" class="hidden md:block cta-button-secondary">Agendar Demo</a>
+
+            <!-- Mobile Menu Button (Hamburger) -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Seção 1: O Gancho (The Hero Section) -->
+        <section id="hero-section" class="py-20 md:py-32 relative overflow-hidden">
+            <div class="hero-visual-bg"></div>
+            <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-center md:text-left scroll-animate">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">Seus Códigos QR agora conhecem seus clientes.</h1>
+                    <p class="mt-6 text-lg sm:text-xl text-slate-300 max-w-lg mx-auto md:mx-0">Adapte a experiência de cada scan em tempo real. Entregue ofertas exclusivas, guias personalizados ou conteúdo interativo, tudo a partir de um único código QR.</p>
+                    <div class="mt-10 flex flex-col sm:flex-row justify-center md:justify-start items-center gap-4">
+                        <a href="#final-cta" class="cta-button-primary text-lg w-full sm:w-auto">Agendar uma Demo</a>
+                        <a href="#features" class="cta-button-secondary text-lg w-full sm:w-auto">Explorar Funcionalidades</a>
+                    </div>
+                </div>
+                
+                <!-- ===== VISUAL ORBITAL ===== -->
+                <div id="hero-visual" class="w-full h-full flex items-center justify-center scroll-animate min-h-[350px] md:min-h-[400px]" style="transition-delay: 0.2s;">
+                    <div class="orbital-container">
+                        <div class="orbit orbit-1"></div>
+                        <div class="orbit orbit-2"></div>
+                        <div class="central-qr">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="currentColor">
+                                <path d="M10 10h25v25H10zM18 18h9v9h-9zM65 10h25v25H65zM73 18h9v9h-9zM10 65h25v25H10zM18 73h9v9h-9z"/>
+                                <path opacity=".6" d="M45 10h5v5h-5zm10 5h5v5h-5zm-10 10h5v5h-5zm10 5h5v5h-5zm-25 5h5v5h-5zm-10 5h5v5h-5zm40 10h5v5h-5zm10-10h5v5h-5zm10 10h5v5h-5zm-40 15h5v5h-5zm10 5h5v5h-5zm-20-15h5v5h-5zM75 75h5v5h-5zm-5 5h5v5h-5zm10 0h5v5h-5z"/>
+                            </svg>
+                        </div>
+                        <div class="orbiting-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" /></svg>
+                        </div>
+                        <div class="orbiting-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /></svg>
+                        </div>
+                        <div class="orbiting-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" /></svg>
+                        </div>
+                        <div class="orbiting-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" /></svg>
+                        </div>
+                        <div class="orbiting-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" /></svg>
+                        </div>
+                        <div class="orbiting-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c.51 0 .962-.328 1.093-.828l2.857-9.589a.75.75 0 0 0-.702-.965H5.488c-.51 0-.962.328-1.093.828L2.25 3Z" /></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 2: Prova Social (Logos) -->
+        <section class="py-12 scroll-animate">
+            <h3 class="text-center text-slate-400 font-medium px-4">A plataforma de confiança para líderes em múltiplas indústrias</h3>
+            <div class="mt-8 flex flex-wrap justify-center items-center gap-x-8 gap-y-4 md:gap-x-12 lg:gap-x-16 grayscale opacity-60">
+                <p class="text-2xl font-bold">TechCorp</p>
+                <p class="text-2xl font-bold">InnovateCo</p>
+                <p class="text-2xl font-bold">Quantum</p>
+                <p class="text-2xl font-bold">Apex</p>
+                <p class="text-2xl font-bold">Synergy</p>
+            </div>
+        </section>
+
+        <!-- Seção 3: Problema vs Solução -->
+        <section class="py-20 md:py-28 scroll-animate">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-center md:text-left"><div class="inline-flex items-center justify-center w-16 h-16 bg-slate-800 border border-slate-700 rounded-xl mb-6"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8 text-slate-400"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" /></svg></div><h2 class="text-3xl md:text-4xl font-bold">O QR Estático é um Beco sem Saída.</h2><p class="mt-4 text-lg text-slate-300">Uma vez impresso, você não pode alterá-lo. Você não sabe quem o escaneia. É uma oportunidade de marketing completamente perdida.</p></div>
+                <div class="text-center md:text-left p-8 rounded-xl bg-slate-800/50 border border-blue-500/30 shadow-2xl shadow-blue-500/10"><div class="inline-flex items-center justify-center w-16 h-16 bg-blue-500/10 border border-blue-500/20 rounded-xl mb-6"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8 text-blue-400"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0 0 20.25 18V6A2.25 2.25 0 0 0 18 3.75H6A2.25 2.25 0 0 0 3.75 6v12A2.25 2.25 0 0 0 6 20.25Z" /></svg></div><h2 class="text-3xl md:text-4xl font-bold">O QR Dinâmico é uma Conversa.</h2><p class="mt-4 text-lg text-slate-300">Edite o destino a qualquer momento. Meça cada interação. Personalize a experiência do usuário instantaneamente.</p></div>
+            </div>
+        </section>
+
+        <!-- Seção 4: Como Funciona -->
+        <section id="features" class="py-20 md:py-28 text-center scroll-animate">
+            <h2 class="text-3xl md:text-4xl font-bold">Resultados Poderosos em 3 Passos Simples</h2>
+            <div class="mt-16 grid md:grid-cols-3 gap-10 max-w-5xl mx-auto">
+                <div class="feature-card"><div class="text-blue-500 font-bold text-6xl mb-4">1</div><h3 class="text-2xl font-semibold">Crie</h3><p class="mt-2 text-slate-400">Crie seu conteúdo e experiências de destino em nossa plataforma intuitiva.</p></div>
+                <div class="feature-card" style="transition-delay: 0.2s;"><div class="text-blue-500 font-bold text-6xl mb-4">2</div><h3 class="text-2xl font-semibold">Personalize</h3><p class="mt-2 text-slate-400">Defina regras e gatilhos para adaptar a experiência a cada usuário e contexto.</p></div>
+                <div class="feature-card" style="transition-delay: 0.4s;"><div class="text-blue-500 font-bold text-6xl mb-4">3</div><h3 class="text-2xl font-semibold">Analise</h3><p class="mt-2 text-slate-400">Meça o ROI de cada campanha com análises detalhadas e em tempo real.</p></div>
+            </div>
+        </section>
+
+        <!-- Seção 5: Casos de Uso por Indústria -->
+        <section class="py-20 md:py-28 scroll-animate">
+            <div class="text-center"><h2 class="text-3xl md:text-4xl font-bold">Uma Solução Versátil para Cada Indústria</h2><p class="mt-4 text-lg text-slate-300 max-w-2xl mx-auto">Descubra como a MidiaCode se adapta aos desafios específicos do seu setor.</p></div>
+            <div class="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="feature-card text-center"><h3 class="text-2xl font-semibold">Varejo & CPG</h3><p class="mt-2 text-slate-400">"Transforme sua embalagem em seu melhor vendedor."</p></div>
+                <div class="feature-card text-center" style="transition-delay: 0.2s;"><h3 class="text-2xl font-semibold">Eventos e Conferências</h3><p class="mt-2 text-slate-400">"Ofereça uma experiência interativa aos seus participantes."</p></div>
+                <div class="feature-card text-center" style="transition-delay: 0.4s;"><h3 class="text-2xl font-semibold">Imobiliário</h3><p class="mt-2 text-slate-400">"Dê vida às suas propriedades com tours virtuais e muito mais."</p></div>
+            </div>
+            <div class="mt-12 text-center"><a href="#" class="cta-button-secondary">Ver todos os Casos de Uso</a></div>
+        </section>
+
+        <!-- Seção 6: Demo Interativo de IA -->
+        <section class="py-20 md:py-28 scroll-animate">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold">Apresentando o Assistente de Campanhas de IA</h2>
+                    <p class="mt-4 text-lg text-slate-300">Seu estrategista de marketing pessoal dentro da plataforma. A IA ajuda você a otimizar campanhas, sugere conteúdo e prevê resultados para maximizar seu impacto.</p>
+                </div>
+                
+                <div id="ai-demo-container" class="bg-slate-800/80 p-6 rounded-xl border border-slate-700 shadow-lg">
+                    <h3 class="text-lg font-semibold text-white">Teste o Assistente de IA</h3>
+                    <p class="text-sm text-slate-400 mb-4">Escreva seu objetivo e obtenha uma sugestão instantaneamente.</p>
+                    <div class="mt-4">
+                        <label for="ia-prompt" class="block text-sm font-medium text-slate-300 sr-only">Seu objetivo:</label>
+                        <input type="text" id="ia-prompt" name="ia-prompt" class="w-full bg-slate-700 border border-slate-600 rounded-md py-2 px-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ex: Vender mais café na minha loja física">
+                    </div>
+                    <button id="ia-suggest-btn" class="w-full mt-4 cta-button-primary">
+                        Gerar Sugestão
+                    </button>
+                    <div id="ia-suggestion" class="mt-6 p-4 bg-blue-900/50 border border-blue-800 rounded-lg text-slate-300 hidden min-h-[100px]">
+                        <!-- A sugestão da IA será inserida aqui -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 7: CTA Final -->
+        <section id="final-cta" class="py-20 md:py-28 my-16 bg-blue-600 rounded-xl text-center scroll-animate">
+            <div class="max-w-3xl mx-auto px-6">
+                <h2 class="text-3xl md:text-5xl font-bold text-white">Pronto para implementar marketing móvel inteligente?</h2>
+                <p class="mt-6 text-lg text-blue-100">Fale com um especialista e descubra como a MidiaCode pode transformar suas interações com clientes e potencializar seus resultados.</p>
+                <div class="mt-10">
+                    <a href="#" class="cta-button-primary bg-white text-blue-600 text-lg px-6 py-3 sm:text-xl sm:px-8 sm:py-4 shadow-2xl hover:bg-slate-100 whitespace-nowrap">Agendar minha Demo Gratuita</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-8 border-t border-slate-800">
+        <p class="text-slate-500">&copy; 2024 MidiaCode. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- SCRIPT PARA ANIMAÇÃO NO SCROLL ---
+        const animatedElements = document.querySelectorAll('.scroll-animate');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        animatedElements.forEach(el => {
+            observer.observe(el);
+        });
+
+        // --- SCRIPT PARA A ANIMAÇÃO ORBITAL (Mobile-First) ---
+        const container = document.querySelector('.orbital-container');
+        const icons = document.querySelectorAll('.orbiting-icon');
+        const orbitElements = document.querySelectorAll('.orbit');
+        let orbits = [];
+
+        function setupAndResizeOrbits() {
+            const containerWidth = container.offsetWidth;
+            if (containerWidth === 0) return;
+
+            const radii = {
+                inner: containerWidth * 0.35,
+                outer: containerWidth * 0.55
+            };
+            orbits = [
+                { radius: radii.inner, speed: 1, icons: Array.from(icons).slice(0, 3) },
+                { radius: radii.outer, speed: -0.7, icons: Array.from(icons).slice(3, 6) }
+            ];
+            if(orbitElements[0]) {
+                orbitElements[0].style.width = orbitElements[0].style.height = `${radii.inner * 2.2}px`;
+            }
+            if(orbitElements[1]) {
+                orbitElements[1].style.width = orbitElements[1].style.height = `${radii.outer * 2.2}px`;
+            }
+        }
+
+        let angle = 0;
+        function animateOrbit() {
+            if (orbits.length === 0) {
+                requestAnimationFrame(animateOrbit);
+                return;
+            }
+            angle += 0.002;
+            orbits.forEach(orbit => {
+                const numIconsInOrbit = orbit.icons.length;
+                orbit.icons.forEach((icon, index) => {
+                    const iconAngle = (index * (2 * Math.PI) / numIconsInOrbit) + (angle * orbit.speed);
+                    const orbitalX = Math.cos(iconAngle) * orbit.radius;
+                    const orbitalY = Math.sin(iconAngle) * orbit.radius;
+                    const floatAmplitude = 5;
+                    const floatFrequency = 3;
+                    const floatOffset = Math.sin((angle * floatFrequency) + index) * floatAmplitude;
+                    icon.style.transform = `translate(${orbitalX}px, ${orbitalY + floatOffset}px)`;
+                });
+            });
+            requestAnimationFrame(animateOrbit);
+        }
+
+        // --- SCRIPT PARA O DEMO INTERATIVO DE IA ---
+        const aiPromptInput = document.getElementById('ia-prompt');
+        const suggestButton = document.getElementById('ia-suggest-btn');
+        const suggestionBox = document.getElementById('ia-suggestion');
+        suggestButton.addEventListener('click', () => {
+            suggestionBox.classList.remove('hidden');
+            suggestButton.disabled = true;
+            suggestButton.textContent = 'Analisando...';
+            suggestionBox.innerHTML = '<p class="font-semibold text-white animate-pulse">Gerando estratégia...</p>';
+            setTimeout(() => {
+                const userObjective = aiPromptInput.value.trim();
+                let suggestionText = '';
+                if (userObjective === '') {
+                    suggestionText = `
+                        <p class="font-semibold text-white">Sugestão da IA:</p>
+                        <p class="mt-2">Claro! Para um objetivo geral, recomendo um QR dinâmico em seu material de marketing que leve a uma <strong>página de boas-vindas interativa</strong>. A partir daí, você pode direcionar os usuários para suas redes sociais, uma oferta especial ou seu site principal.</p>
+                    `;
+                } else {
+                     suggestionText = `
+                        <p class="font-semibold text-white">Sugestão da IA para "${userObjective}":</p>
+                        <p class="mt-2">Excelente objetivo! Recomendo um QR dinâmico que mude seu destino de acordo com a hora. <strong>Das 8h às 14h</strong>, que leve a uma oferta de "Café + Croissant". <strong>Após as 14h</strong>, que ofereça um "50% de desconto no seu segundo café" para impulsionar as vendas da tarde.</p>
+                    `;
+                }
+                suggestionBox.innerHTML = suggestionText;
+                suggestButton.disabled = false;
+                suggestButton.textContent = 'Gerar Sugestão';
+            }, 1500); 
+        });
+        
+        // --- SCRIPT PARA O MENU MOBILE ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMenuButton = document.getElementById('close-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = mobileMenu.querySelectorAll('a');
+
+        // Ocultar o menu inicialmente com a classe e JS para evitar "flash"
+        mobileMenu.classList.add('menu-hidden');
+
+        function openMenu() {
+            mobileMenu.classList.remove('menu-hidden');
+            document.body.style.overflow = 'hidden'; // Bloquear scroll do corpo
+        }
+
+        function closeMenu() {
+            mobileMenu.classList.add('menu-hidden');
+            document.body.style.overflow = 'auto'; // Restaurar scroll do corpo
+        }
+
+        mobileMenuButton.addEventListener('click', openMenu);
+        closeMenuButton.addEventListener('click', closeMenu);
+
+        // Fechar o menu ao clicar em um link (útil para navegação na mesma página)
+        navLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+        
+        // Configuração inicial e reconfiguração em caso de redimensionamento
+        setupAndResizeOrbits();
+        animateOrbit();
+        window.addEventListener('resize', setupAndResizeOrbits);
+    });
+    </script>
+
+</body>
+</html>
