@@ -181,7 +181,7 @@
 <body class="antialiased">
 
     <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 bg-slate-900 bg-opacity-95 z-40 flex flex-col items-center justify-center">
+    <div id="mobile-menu" class="fixed inset-0 bg-slate-900 bg-opacity-95 z-40 flex flex-col items-center justify-center menu-hidden">
         <button id="close-menu-button" class="absolute top-7 right-4 text-white focus:outline-none">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -450,9 +450,6 @@
         const closeMenuButton = document.getElementById('close-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         const navLinks = mobileMenu.querySelectorAll('a');
-
-        // Ocultar o menu inicialmente com a classe e JS para evitar "flash"
-        mobileMenu.classList.add('menu-hidden');
 
         function openMenu() {
             mobileMenu.classList.remove('menu-hidden');
